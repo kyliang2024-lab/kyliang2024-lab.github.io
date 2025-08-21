@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Justin Bieber Fanpage</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #ffffff;
+      --card-bg: rgba(0,0,0,0.45);
+      --btn-bg: rgba(255,255,255,0.12);
+      --display-font: "Playfair Display", serif;
+      --ui-font: "Poppins", sans-serif;
+      --title-gradient: linear-gradient(90deg, #ffffff 0%, #ffeedd 45%, #ffd6f0 100%);
+      --header-offset: clamp(80px, 18vh, 220px);
+      --award-card-bg: rgba(255,255,255,0.06);
+      --cloud-min-size: 14px;
+      --cloud-max-size: 64px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-offset); }
+    html,body{ height:100%; margin:0; font-family:var(--ui-font), system-ui,Segoe UI,Roboto,Arial; color:var(--accent); background:#111; }
+    body{
+      background-image: url('images/justin1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+    }
+
+    #top { position:relative; top:0; display:block; height:0; width:0; }
+
+    .overlay{
+      width:100%;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:18px 20px;
+      box-sizing:border-box;
+      position:relative;
+      z-index:0;
+    }
+
+    .hero{
+      width:100%;
+      min-height:38vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      gap:8px;
+      padding-top:8px;
+    }
+
+    .hero h1{
+      font-family: var(--display-font);
+      font-weight: 900;
+      font-size: clamp(48px, 10vw, 110px);
+      margin: 0;
+      padding: 0;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      letter-spacing: -0.75px;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 8px 18px rgba(0,0,0,0.55);
+      transition: transform .28s cubic-bezier(.2,.9,.2,1);
+      display: inline-block;
+    }
+    @media (hover: hover) { .hero h1:hover { transform: translateY(-4px) scale(1.01); } }
+    .hero h1::after{
+      content: "";
+      display:block;
+      height:3px;
+      width:48%;
+      max-width:420px;
+      margin:10px auto 0;
+      border-radius:3px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .cards{
+      display:flex;
+      gap:22px;
+      margin-top:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+      width:100%;
+      max-width:1200px;
+      padding-bottom:24px;
+    }
+    .card{
+      width:360px;
+      background:var(--card-bg);
+      border-radius:14px;
+      padding:18px;
+      box-sizing:border-box;
+      text-align:center;
+      box-shadow:0 12px 36px rgba(0,0,0,0.45);
+      color:var(--accent);
+      backdrop-filter: blur(6px);
+      transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .12s ease;
+      will-change: transform, box-shadow;
+      transform-origin:center;
+    }
+    .card img{ width:100%; height:200px; object-fit:cover; border-radius:10px; display:block; }
+    .card h3{ margin:14px 0 8px; font-size:20px; }
+    .card p{ font-size:15px; color:rgba(255,255,255,0.92); margin:0 0 14px; min-height:40px; }
+    .btn{ display:inline-block; padding:12px 18px; border-radius:8px; text-decoration:none; border:2px solid rgba(255,255,255,0.95); color:white; background:var(--btn-bg); font-weight:700; transition:transform .12s ease; }
+    .btn:hover{ transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,0.45); }
+
+    @media (hover: hover) {
+      .card:hover, .card:focus-within, .card:focus {
+        transform: translateY(-10px) scale(1.04);
+        box-shadow: 0 28px 60px rgba(0,0,0,0.6);
+      }
+      .card:hover img, .card:focus-within img, .card:focus img { transform: scale(1.06); }
+    }
+
+    footer{ margin-top:28px; color:rgba(255,255,255,0.75); font-size:13px; padding:24px 0 40px; width:100%; max-width:1200px; text-align:center; opacity:0.9; }
+
+    /* detail sections */
+    .detail-section{
+      width:100%;
+      max-width:1200px;
+      margin:18px auto;
+      border-radius:12px;
+      box-sizing:border-box;
+      color: #fff;
+      position:relative;
+      overflow:visible;
+      min-height: clamp(60vh, 80vh, 110vh);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-size: 130%;
+      background-position:center;
+      background-repeat:no-repeat;
+      backdrop-filter: blur(6px) saturate(0.9);
+      -webkit-backdrop-filter: blur(6px) saturate(0.9);
+      z-index:5;
+      opacity:0;
+      transform: translateY(22px) scale(0.995);
+      transition: opacity 640ms cubic-bezier(.2,.9,.2,1), transform 640ms cubic-bezier(.2,.9,.2,1);
+      will-change: opacity, transform;
+      scroll-margin-top: var(--header-offset);
+    }
+    .detail-section:first-of-type { margin-top: calc(var(--header-offset) + 28px); }
+    .detail-section.in-view{ opacity:1; transform: translateY(0) scale(1); }
+    .detail-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+      z-index:1;
+      border-radius:12px;
+    }
+    .detail-inner{
+      position:relative;
+      z-index:2;
+      padding:clamp(20px,4vw,48px);
+      width:100%;
+      box-sizing:border-box;
+    }
+    .detail-section h2{ margin-top:0; font-size: clamp(28px, 4vw, 40px); }
+
+    /* music UI */
+    .vertical-music {
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      max-width:1100px;
+      margin-top:18px;
+    }
+
+    .vm-list{
+      width: clamp(200px, 22vw, 320px);
+      flex:0 0 clamp(200px, 22vw, 320px);
+      max-height:70vh;
+      overflow:auto;
+      padding:10px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .vm-item{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      width:100%;
+      padding:10px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius:10px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.04);
+      transition: transform .14s ease, box-shadow .14s ease, background .14s ease;
+      user-select:none;
+    }
+    .vm-item:hover{ transform: translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.45); }
+    .vm-item.active{
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border-color: rgba(255,255,255,0.14);
+      transform: translateY(-6px);
+      box-shadow:0 22px 48px rgba(0,0,0,0.6);
+    }
+    .vm-item .thumb{
+      width:64px; height:44px; border-radius:6px; object-fit:cover; flex:0 0 64px; background:#222;
+    }
+    .vm-item .label{ font-weight:700; font-size:16px; color:var(--accent); line-height:1.05; }
+    .vm-item .sub{ font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px; }
+
+    .vm-content{
+      flex:1 1 auto;
+      min-height:320px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.38));
+      box-shadow:0 12px 36px rgba(0,0,0,0.45);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .vm-content .title{ padding:18px 20px; font-weight:800; font-size:20px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-bottom:1px solid rgba(255,255,255,0.03); color:#fff; }
+    .vm-content .iframe-wrap{ padding:18px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; }
+
+    .vm-content .iframe-wrap .player {
+      width:100%;
+      max-width:1200px;
+      aspect-ratio: 16/9;
+      border-radius:8px;
+      overflow:hidden;
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .vm-content .iframe-wrap iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    .vm-content.has-player .player{ opacity:1; transform:none; transition:none; }
+
+    /* Awards */
+    .awards-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .award-card{
+      background: var(--award-card-bg);
+      padding:18px;
+      border-radius:10px;
+      text-align:center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100px;
+
+      transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease, background .18s ease;
+      will-change: transform, box-shadow;
+      transform-origin: center;
+      cursor: default;
+    }
+    .award-card:hover,
+    .award-card:focus,
+    .award-card.active {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.60);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+    }
+    .award-card:focus {
+      outline: none;
+      box-shadow: 0 28px 60px rgba(0,0,0,0.60), 0 0 0 4px rgba(255,255,255,0.04) inset;
+    }
+    .award-card.active { border-color: rgba(255,255,255,0.12); }
+
+    .award-num{ font-size:28px; font-weight:800; line-height:1; margin-bottom:8px; }
+    .award-name{ font-size:14px; color:rgba(255,255,255,0.95); }
+    .award-summary{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:18px; font-size:14px; color:rgba(255,255,255,0.92); }
+    .award-pill{ background: rgba(255,255,255,0.06); padding:8px 12px; border-radius:20px; font-weight:600; box-shadow:0 6px 16px rgba(0,0,0,0.25); }
+
+    /* early timeline */
+    .early-timeline{ display:flex; flex-direction:column; gap:12px; margin-top:12px; }
+    .early-timeline .event{ display:flex; gap:16px; align-items:flex-start; }
+    .early-timeline .year{ min-width:72px; color:rgba(255,255,255,0.85); font-weight:700; font-size:15px; opacity:0.95; }
+    .early-timeline .desc{ color:rgba(255,255,255,0.95); line-height:1.6; font-size:15px; }
+
+    /* Fan Shoutout (word cloud) styles */
+    .shoutout-section .shoutout-wrapper{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      width:100%;
+      max-width:1200px;
+      margin-top:8px;
+    }
+    .shoutout-form{
+      width:320px;
+      flex:0 0 320px;
+      background: rgba(0,0,0,0.48);
+      padding:16px;
+      border-radius:12px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+    }
+    .shoutout-form h3{ margin:0 0 8px; font-size:20px; }
+    .shoutout-form textarea{ width:100%; min-height:90px; resize:vertical; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.03); color:var(--accent); box-sizing:border-box; font-family:inherit; }
+    .shoutout-form .controls{ display:flex; gap:8px; margin-top:8px; }
+    .shoutout-form button{ padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:var(--btn-bg); color:var(--accent); cursor:pointer; font-weight:700; }
+    .shoutout-form .meta{ margin-top:10px; font-size:13px; color:rgba(255,255,255,0.75); }
+
+    .cloud-panel{
+      flex:1 1 auto;
+      min-height:320px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.36));
+      padding:18px;
+      border-radius:12px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+      position:relative;
+      overflow:hidden;
+    }
+    .cloud-area{
+      width:100%;
+      height:100%;
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:12px;
+      box-sizing:border-box;
+      align-content:flex-start;
+    }
+    .cloud-word{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:6px;
+      color: #fff;
+      opacity:0.95;
+      transition: transform .2s ease, box-shadow .2s ease;
+      user-select:none;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+      cursor:default;
+    }
+    .cloud-word:hover{ transform: translateY(-6px) scale(1.06); box-shadow:0 14px 36px rgba(0,0,0,0.5); }
+
+    .cloud-controls{ position:absolute; right:12px; bottom:12px; display:flex; gap:8px; }
+    .cloud-controls button{ padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.04); color:var(--accent); font-weight:700; cursor:pointer; }
+
+    /* small screens */
+    @media (max-width:980px){
+      .vertical-music{ flex-direction:column; }
+      .vm-list{ width:100%; max-height:none; flex-direction:row; overflow:auto; padding:10px; gap:10px; align-items:flex-start; }
+      .vm-list .vm-item{ flex:0 0 auto; min-width:220px; max-width:420px; }
+      .vm-item .label{ font-size:15px; }
+      .vm-content .iframe-wrap .player{ aspect-ratio: 16/9; max-width:960px; }
+      .shoutout-wrapper{ flex-direction:column; }
+      .shoutout-form{ width:100%; flex:0 0 auto; }
+    }
+
+    @media (max-width:700px){
+      .detail-section{ min-height: calc(100vh - 100px); background-size:120%; }
+      .vm-content .iframe-wrap .player{ aspect-ratio: 16/9; }
+      .card{ width:92%; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .detail-section, .card, .vm-item, .vm-content .iframe-wrap iframe, .award-card, .cloud-word {
+        transition: none !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+
+  <div class="overlay">
+    <header class="hero" role="banner">
+      <h1>Justin Bieber</h1>
+    </header>
+
+    <main class="cards" role="main">
+      <section class="card" aria-labelledby="music-title" tabindex="0">
+        <img src="images/justin6.jpg" alt="Justin Bieber - music" />
+        <h3 id="music-title">His Music</h3>
+        <p>Listen to some of his biggest hits below.</p>
+        <a class="btn" href="#music-section">See details</a>
+      </section>
+
+      <section class="card" aria-labelledby="awards-title" tabindex="0">
+        <img src="images/justin4.jpg" alt="Justin Bieber awards" />
+        <h3 id="awards-title">Awards</h3>
+        <p>Major awards and recognitions throughout his career.</p>
+        <a class="btn" href="#awards-section">View awards</a>
+      </section>
+
+      <section class="card" aria-labelledby="early-title" tabindex="0">
+        <img src="images/justin5_720.jpg" alt="Young Justin Bieber" />
+        <h3 id="early-title">Early Career</h3>
+        <p>From YouTube discovery to early singles and rise to fame.</p>
+        <a class="btn" href="#early-section">Learn more</a>
+      </section>
+    </main>
+
+    <footer></footer>
+  </div><!-- /.overlay -->
+
+  <!-- MUSIC SECTION -->
+  <section id="music-section" class="detail-section" style="background-image: url('justin6.jpg');">
+    <div class="detail-inner" tabindex="0">
+      <h2>His Music</h2>
+
+      <div class="vertical-music" role="application" aria-label="Music player selector">
+        <!-- visible song list -->
+        <div class="vm-list" role="list" aria-label="Songs list">
+          <div class="vm-item" role="listitem" data-video-id="kffacxfA7G4" tabindex="0" aria-pressed="false">
+            <img class="thumb" src="images/justin6.jpg" alt="Baby thumbnail" />
+            <div>
+              <div class="label">Baby</div>
+              <div class="sub">Justin Bieber ft. Ludacris</div>
+            </div>
+          </div>
+
+          <div class="vm-item" role="listitem" data-video-id="fRh_vgS2dFE" tabindex="0" aria-pressed="false">
+            <img class="thumb" src="images/justin4.jpg" alt="Sorry thumbnail" />
+            <div>
+              <div class="label">Sorry</div>
+              <div class="sub">Justin Bieber</div>
+            </div>
+          </div>
+
+          <div class="vm-item" role="listitem" data-video-id="Fp8msa5uYsc" tabindex="0" aria-pressed="false">
+            <img class="thumb" src="images/justin5_720.jpg" alt="Ghost thumbnail" />
+            <div>
+              <div class="label">Ghost</div>
+              <div class="sub">Justin Bieber</div>
+            </div>
+          </div>
+
+          <div class="vm-item" role="listitem" data-video-id="kTJczUoc26U" tabindex="0" aria-pressed="false">
+            <img class="thumb" src="images/justin6.jpg" alt="Stay thumbnail" />
+            <div>
+              <div class="label">Stay</div>
+              <div class="sub">The Kid LAROI, Justin Bieber</div>
+            </div>
+          </div>
+
+          <div class="vm-item" role="listitem" data-video-id="DK_0jXPuIr0" tabindex="0" aria-pressed="false">
+            <img class="thumb" src="images/justin5_720.jpg" alt="What Do You Mean thumbnail" />
+            <div>
+              <div class="label">What Do You Mean?</div>
+              <div class="sub">Justin Bieber</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- player area -->
+        <div class="vm-content" aria-live="polite">
+          <div class="title">Select a song to play</div>
+          <div class="iframe-wrap" data-loaded="false" aria-hidden="true">
+            <!-- player inserted by script -->
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;"><a class="btn" href="#top">Back to top</a></p>
+    </div>
+  </section>
+
+  <!-- AWARDS SECTION -->
+  <section id="awards-section" class="detail-section" style="background-image: url('images/justin4.jpg');">
+    <div class="detail-inner" tabindex="0">
+      <h2>Awards & Honors</h2>
+      <p>Justin Bieber has been recognized with numerous awards across major international ceremonies. Below is a concise overview of the awards he has won.</p>
+
+      <div class="awards-grid" role="list">
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">2</div>
+          <div class="award-name">Grammy Awards</div>
+        </div>
+
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">1</div>
+          <div class="award-name">Latin Grammy</div>
+        </div>
+
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">8</div>
+          <div class="award-name">Juno Awards</div>
+        </div>
+
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">2</div>
+          <div class="award-name">Brit Awards</div>
+        </div>
+
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">26</div>
+          <div class="award-name">Billboard Music Awards</div>
+        </div>
+
+        <div class="award-card" role="listitem" tabindex="0">
+          <div class="award-num">18</div>
+          <div class="award-name">American Music Awards</div>
+        </div>
+      </div>
+
+      <div class="award-summary" aria-hidden="true" style="margin-top:18px;">
+        <div class="award-pill">Major wins across pop & global charts</div>
+        <div class="award-pill">Multiple industry & fan-voted awards</div>
+        <div class="award-pill">Strong Billboard presence (26 wins)</div>
+      </div>
+
+      <p style="margin-top:18px;"><a class="btn" href="#top">Back to top</a></p>
+    </div>
+  </section>
+
+  <!-- EARLY CAREER -->
+  <section id="early-section" class="detail-section" style="background-image: url('images/justin5_720.jpg');">
+    <div class="detail-inner" tabindex="0">
+      <h2>Early Career</h2>
+
+      <p>Justin's early rise began when his mother posted videos of him singing on YouTube. Those videos were discovered by music promoter Scooter Braun, who brought Justin to Atlanta and introduced him to Usher. Usher helped him sign with Island Records and kick off his professional career.</p>
+
+      <div class="early-timeline" aria-label="Justin Bieber early career timeline" style="margin-top:12px;">
+        <div class="event">
+          <div class="year">2008</div>
+          <div class="desc"><strong>Discovery:</strong> Scooter Braun finds Justin on YouTube and arranges meetings in Atlanta.</div>
+        </div>
+
+        <div class="event">
+          <div class="year">2009</div>
+          <div class="desc"><strong>Debut single — "One Time":</strong> Released in 2009; became a commercial hit and introduced Bieber to a global audience. He also released the EP <em>My World</em>.</div>
+        </div>
+
+        <div class="event">
+          <div class="year">2010</div>
+          <div class="desc"><strong>Breakthrough album — <em>My World 2.0</em>:</strong> The album reached #1 on the Billboard 200. That year he also starred in the concert film <em>Justin Bieber: Never Say Never</em>, which succeeded at the box office and cemented his teen-idol status.</div>
+        </div>
+      </div>
+
+      <p style="margin-top:12px;">This early success established Justin as a major pop act and teen idol, with a strong fanbase that helped propel later albums and tours.</p>
+
+      <p style="margin-top:14px;"><a class="btn" href="#top">Back to top</a></p>
+    </div>
+  </section>
+
+  <!-- FAN SHOUTOUT SECTION -->
+  <section id="shoutout-section" class="detail-section shoutout-section" style="background-image: url('images/justin1.jpg');">
+    <div class="detail-inner" tabindex="0">
+      <h2>Fan Shoutout</h2>
+      <p>Type a short shoutout (one line or a sentence) and press Submit. The word cloud updates and words that appear more often become larger.</p>
+
+      <div class="shoutout-wrapper">
+        <form id="shoutout-form" class="shoutout-form" onsubmit="return false;">
+          <h3>Say something:</h3>
+          <textarea id="shoutout-input" placeholder="Type your shoutout here... (e.g. 'Justin forever!')" aria-label="Shoutout input"></textarea>
+
+          <div class="controls">
+            <button id="shoutout-submit" type="button">Submit</button>
+            <button id="shoutout-clear" type="button">Clear all</button>
+          </div>
+
+          <div class="meta" id="shoutout-meta">Submissions stored in your browser. Top words become larger.</div>
+        </form>
+
+        <div class="cloud-panel" aria-live="polite" aria-atomic="true">
+          <div class="cloud-area" id="cloud-area" title="Word cloud — size indicates frequency"></div>
+
+
+          </div>
+        </div>
+
+  </section>
+
+  <script>
+    // Music UI (lazy-load single iframe, aspect-ratio)
+    (function(){
+      const items = Array.from(document.querySelectorAll('.vm-item'));
+      const contentPanel = document.querySelector('.vm-content');
+      const iframeWrap = contentPanel ? contentPanel.querySelector('.iframe-wrap') : null;
+      const titleEl = contentPanel ? contentPanel.querySelector('.title') : null;
+
+      if(!items.length || !iframeWrap) return;
+
+      function unloadPlayer(){
+        iframeWrap.innerHTML = '';
+        iframeWrap.dataset.loaded = 'false';
+        iframeWrap.setAttribute('aria-hidden','true');
+        contentPanel.classList.remove('has-player');
+      }
+
+      function loadVideo(videoId, label){
+        unloadPlayer();
+        const player = document.createElement('div');
+        player.className = 'player';
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/' + encodeURIComponent(videoId) + '?rel=0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        player.appendChild(iframe);
+        iframeWrap.appendChild(player);
+        iframeWrap.dataset.loaded = 'true';
+        iframeWrap.setAttribute('aria-hidden','false');
+        contentPanel.classList.add('has-player');
+        if(titleEl) titleEl.textContent = label;
+      }
+
+      function setActive(el){
+        items.forEach(i => {
+          i.classList.toggle('active', i === el);
+          if(i === el) i.setAttribute('aria-pressed','true'); else i.setAttribute('aria-pressed','false');
+        });
+      }
+
+      items.forEach(el => {
+        const vid = el.dataset.videoId;
+        const title = (el.querySelector('.label') || {}).textContent || 'Track';
+        el.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          const already = el.classList.contains('active');
+          if(already){
+            setActive(null);
+            unloadPlayer();
+            if(titleEl) titleEl.textContent = 'Select a song to play';
+          } else {
+            setActive(el);
+            loadVideo(vid, title.trim());
+          }
+        });
+
+        el.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+          if(e.key === 'ArrowUp'){ e.preventDefault(); const prev = el.previousElementSibling; if(prev) prev.focus(); }
+          if(e.key === 'ArrowDown'){ e.preventDefault(); const next = el.nextElementSibling; if(next) next.focus(); }
+        });
+      });
+
+      // Default: load "Baby" on page load
+      setTimeout(() => {
+        const defaultItem = document.querySelector('.vm-item[data-video-id="kffacxfA7G4"]');
+        if(defaultItem){
+          setActive(defaultItem);
+          loadVideo(defaultItem.dataset.videoId, defaultItem.querySelector('.label').textContent.trim());
+        }
+      }, 80);
+    })();
+
+    // IntersectionObserver for in-view animations
+    (function(){
+      const sections = document.querySelectorAll('.detail-section');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('in-view');
+          });
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+        sections.forEach(s => io.observe(s));
+      } else {
+        sections.forEach(s => s.classList.add('in-view'));
+      }
+    })();
+
+    // Awards keyboard + click toggle for the same "active" visual
+    (function(){
+      const awardCards = document.querySelectorAll('.award-card');
+      awardCards.forEach(card => {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('active');
+          }
+        });
+        card.addEventListener('click', () => {
+          card.classList.toggle('active');
+        });
+      });
+    })();
+
+
+    /***************************************************************************
+     * Fan Shoutout - Word Cloud (client-side only, localStorage persistence)
+     *
+     * Behavior:
+     * - Users type a message and press Submit.
+     * - Script tokenizes the message, updates frequency counts, and redraws cloud.
+     * - Words are normalized to lowercase, punctuation stripped, and short stop words are ignored.
+     * - Cloud words sized between --cloud-min-size and --cloud-max-size.
+     * - All data stored in localStorage under "jb_fan_shoutouts" as array of texts.
+     *
+     ***************************************************************************/
+
+    (function(){
+      const STORAGE_KEY = 'jb_fan_shoutouts_v1';
+      const form = document.getElementById('shoutout-form');
+      const input = document.getElementById('shoutout-input');
+      const submitBtn = document.getElementById('shoutout-submit');
+      const clearBtn = document.getElementById('shoutout-clear');
+      const cloudArea = document.getElementById('cloud-area');
+      const copyBtn = document.getElementById('cloud-copy');
+      const exportBtn = document.getElementById('cloud-export');
+
+      // a small set of stopwords to ignore — keeps cloud meaningful
+      const STOPWORDS = new Set([
+        'the','and','a','an','to','i','you','it','is','in','of','on','for','my','me','we','be','so','that','this','with','his','her','he','she','they','at','by','from','as','are','was','were','but','or','not','will','your'
+      ]);
+
+      // load stored submissions (array of texts)
+      function loadSubmissions(){
+        try{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        }catch(e){ return []; }
+      }
+
+      function saveSubmissions(arr){
+        try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch(e){}
+      }
+
+      // sanitize and split into words
+      function tokenize(text){
+        // normalize smartly: remove punctuation (but keep apostrophes inside words)
+        const cleaned = text.toLowerCase()
+          .replace(/[“”«»„‟„`·•‹›]/g, ' ')
+          .replace(/[^\w'\s-]/g,' ')            // remove punctuation except apostrophe and dash
+          .replace(/[\s\r\n]+/g,' ')
+          .trim();
+        if(!cleaned) return [];
+        const parts = cleaned.split(' ').map(s => s.trim()).filter(Boolean);
+        // filter stopwords and one-letter words
+        return parts.filter(w => w.length>1 && !STOPWORDS.has(w));
+      }
+
+      // update cloud display from the list of submissions
+      function updateCloud(){
+        const submissions = loadSubmissions();
+        const counts = {}; // word -> freq
+        submissions.forEach(text => {
+          const words = tokenize(text);
+          words.forEach(w => counts[w] = (counts[w] || 0) + 1);
+        });
+
+        // empty
+        cloudArea.innerHTML = '';
+        const entries = Object.entries(counts);
+        if(entries.length === 0){
+          const hint = document.createElement('div');
+          hint.style.color = 'rgba(255,255,255,0.85)';
+          hint.textContent = 'No shoutouts yet — be the first!';
+          cloudArea.appendChild(hint);
+          return;
+        }
+
+        // find min/max frequencies
+        const freqs = entries.map(e => e[1]);
+        const min = Math.min(...freqs);
+        const max = Math.max(...freqs);
+
+        // helper: map freq -> font size
+        const minSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cloud-min-size')) || 14;
+        const maxSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cloud-max-size')) || 64;
+        function sizeFor(freq){
+          if(max === min) return Math.round((minSize + maxSize)/2);
+          const t = (freq - min)/(max - min);
+          return Math.round(minSize + t * (maxSize - minSize));
+        }
+
+        // sort by freq descending for nicer layout
+        entries.sort((a,b) => b[1] - a[1]);
+
+        // create word elements
+        entries.forEach(([word, count]) => {
+          const span = document.createElement('span');
+          span.className = 'cloud-word';
+          const fs = sizeFor(count);
+          span.style.fontSize = fs + 'px';
+          // random pastel-ish color
+          const hue = Math.round((word.charCodeAt(0) % 50) * 7 + (count*3));
+          span.style.background = `linear-gradient(135deg, hsla(${hue},30%,22%,0.14), hsla(${hue},30%,12%,0.06))`;
+          // slight random rotation
+          const rot = (Math.random()*24 - 12).toFixed(2);
+          span.style.transform = `rotate(${rot}deg)`;
+          span.textContent = word;
+          span.title = `${word} — ${count} ${count===1?'time':'times'}`;
+          cloudArea.appendChild(span);
+        });
+      }
+
+      // event handlers
+      submitBtn.addEventListener('click', () => {
+        const text = input.value.trim();
+        if(!text) return;
+        const submissions = loadSubmissions();
+        submissions.push(text);
+        saveSubmissions(submissions);
+        input.value = '';
+        updateCloud();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        if(!confirm('Clear all shoutouts from this browser?')) return;
+        localStorage.removeItem(STORAGE_KEY);
+        updateCloud();
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        const submissions = loadSubmissions();
+        const words = submissions.join('\\n');
+        try{
+          await navigator.clipboard.writeText(words);
+          alert('Shoutouts copied to clipboard (joined lines).');
+        }catch(e){
+          alert('Copy failed — your browser may block clipboard. You can export instead.');
+        }
+      });
+
+      exportBtn.addEventListener('click', () => {
+        const submissions = loadSubmissions();
+        const data = JSON.stringify(submissions, null, 2);
+        const blob = new Blob([data], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'fan_shoutouts.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      // keyboard submit (Ctrl+Enter or Cmd+Enter)
+      input.addEventListener('keydown', (e) => {
+        if((e.ctrlKey || e.metaKey) && e.key === 'Enter'){
+          e.preventDefault();
+          submitBtn.click();
+        }
+      });
+
+      // initialize
+      updateCloud();
+
+    })();
+  </script>
+</body>
+</html>
