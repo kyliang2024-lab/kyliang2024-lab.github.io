@@ -1,0 +1,102 @@
+/* styles.css - Challenge #2 (Skeleton: Rides Gallery) */
+
+/* 0) Base page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lightblue;
+    
+}
+
+
+/* 1) Container  fix 3 cards if >=800px*/ 
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* 2) Section heading */
+.attractions {
+    text-align: center;
+}
+
+
+/* 3) Cards wrapper (center all cards horizontally) grid wrapper*/
+.cards{
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* 4) Card (size, spacing, border, rounded corners) */
+.card {
+  background: white;
+  border-radius:10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px lightgray;
+  border: 2px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 220ms ease, border-color 220ms ease;
+  max-height: 350px;
+  will-change: transform;
+  
+}
+
+/* 5) Card text (h3 title, paragraph blurb) */
+.blurb {
+    text-align: left;
+    margin: 10px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;   
+    
+}
+
+/* 6) Card image (fit within card, centered) */
+img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;   /* fill its box while preserve ratio */
+    display: block;      /* change from inline to block,remove the gap below or above */
+
+}
+
+
+/* active triggers: hover with mouse OR keyboard focus inside card */
+.card:hover {
+  border-color: red;                          /* red border on interaction */
+  box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+  animation: wiggle 420ms ease both;                
+  cursor: pointer;
+}
+
+/* keyframes define the multi-step wiggle (left/right) */
+@keyframes wiggle {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+  15%  { transform: translateY(-6px) translateX(-6px) rotate(-1.2deg); }
+  40%  { transform: translateY(-6px) translateX(6px)  rotate(1.2deg); }
+  60%  { transform: translateY(-6px) translateX(-3px) rotate(-0.6deg); }
+  80%  { transform: translateY(-6px) translateX(3px)  rotate(0.6deg); }
+  100% { transform: translateY(-6px) translateX(0)    rotate(0deg); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    animation: none;
+    transform: translateY(-6px); /* keep small lift but no wiggle */
+    transition-duration: 160ms;
+  }
+}
+/* 8) Footer */
+.site-footer {
+    margin: 18px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    text-align: center;
+}

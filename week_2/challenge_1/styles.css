@@ -1,0 +1,111 @@
+/* styles.css - Challenge #1 (Skeleton) */
+body {
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+}
+.container {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* background-color: beige; */
+    /* align-content: center; */
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+    /* vertically center children stack up */
+    justify-content: center; 
+    /* horizontal center, only center the image */
+    align-items: center;
+    /* text-align align image and text */
+    
+
+}
+
+.site-header {
+    color:rgb(187, 92, 108);
+    text-align: center;
+
+}
+
+.mascot-placeholder {
+    
+    border-color: blanchedalmond;
+    border-radius: 25%;
+    background-color: white;
+    margin: auto;
+    height: 300px;
+    width: 300px;
+    align-content: center;
+
+}
+
+img {
+    width: 85%;
+}
+
+.about {
+    text-align: left;
+    margin: 10px;
+
+}
+
+.actions {
+  display: flex;
+  /* flex-direction: column;   */
+     /* row on wide screens */
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-top: 1px solid rgba(0,0,0,0.08); /* subtle line */
+  padding-top: 18px;                      /* space between main content and buttons */
+  margin-top: 24px;                       /* extra separation if needed */
+
+}
+
+
+.buy-tickets {
+    color: white;
+    background-color: rgb(9, 141, 9);
+    border-radius: 10px;
+    border: none;
+    padding: 20px, 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px turquoise;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buy-tickets:hover {
+    background-color: darkgreen;
+    transform: translate(-4px);
+    box-shadow: 0 8px 16px rgba(114, 245, 114, 0.6);
+    
+}
+
+.make-donation:hover {
+    background-color: darkblue;
+    transform: translate(4px);
+    box-shadow: 0 8px 16px rgba(46, 105, 231, 0.925);
+}
+
+
+.make-donation {
+    color: white;
+    background-color: rgba(6, 44, 150, 0.514);
+    border: none;
+    border-radius: 10px;
+    padding: 20px, 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(230, 105, 125);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-footer {
+    color:rgb(211, 174, 180);
+    text-align: center;
+
+}
