@@ -1,0 +1,105 @@
+/* 1rem = 16px */
+
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hero section */
+.hero {
+  background-image: url('images/selfpic.jpg'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;    /*  means viewport height that makes your image the background*/
+  color: white;  /* everything inside the hero container will be white*/
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* used inside flexbox containers to control horizontal alignment*/
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Hero content */
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);   
+  /* 0 - offset-x, no horizontal shift, shadow directly under */
+  /* 2px - offset-y shadow is pushed 4px downward */
+  /* 5px blur radius makes the shadow soft and spread out */
+}
+
+/* Button group */
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  /* <a> tags behave like inline elemt may stack unpredicatbly
+  flex turn.buttons into a flex container for its .btn children  */
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background-color: white;
+  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Video Section */
+.video-section {
+  background-color: #000;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
