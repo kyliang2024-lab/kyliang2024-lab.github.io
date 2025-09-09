@@ -1,0 +1,26 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    color: #343a40;
+    padding-top: 15px;
+}
+
+.lead {
+    color: #6c757d;
+}
+
+
+/* .col-md img {
+    height: auto;
+    width: 100%;
+}
+
+.col-md p {
+    text-align: left;
+}
+.col-md h1 { 
+    text-align: left;
+} */
