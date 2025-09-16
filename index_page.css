@@ -1,10 +1,8 @@
-/* 1rem = 16px */
 
 /* Reset & base styles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body,
@@ -12,6 +10,8 @@ html {
     height: 100%;
     font-family: 'Segoe UI', sans-serif;
 }
+
+
 
 /* person section */
 .person {
@@ -43,23 +43,30 @@ html {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     width: 100%;
     padding: 0 20px;
+    height: 100vh;
 }
 
 .carousel-overlay h1 {
-    font-size: 150px;
     font-style: italic;
     font-family: sans-serif;
     margin-bottom: 10px;
+
 }
 
-.carousel-overlay .btn {
-    margin: 10 20px;
+.carousel-overlay p{
+    font-family: fantasy;
+    font-size: large;
 }
 
-.carousel-overlay  {
-    font-size: 75px;
-}    
-/* Optional: dim the carousel images for better overlay contrast */
+
+
+/* hide controls for this specific carousel */
+#carouselExampleAutoplaying .carousel-control-prev,
+#carouselExampleAutoplaying .carousel-control-next {
+  display: none !important;
+}
+
+
 #carouselExampleAutoplaying .carousel-inner img {
     filter: brightness(60%);
     object-fit: cover;
@@ -68,8 +75,8 @@ html {
 
 /* Video Section */
 .video-section {
-    background-color: #c5b3b3;
-    padding: 3rem 1rem;
+    background-color: #836f6f;
+    /* padding: 3rem 1rem; */
     display: flex;
     justify-content: center;
 }
@@ -82,6 +89,7 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     border-radius: 12px;
     overflow: hidden;
+    margin:0;
 }
 
 .video-container iframe {
