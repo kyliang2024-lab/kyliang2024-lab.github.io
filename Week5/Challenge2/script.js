@@ -50,7 +50,7 @@ function populate_cards(profile_array) {
 
         // determine shadow colour based on gender
         let cardclass;''
-        if(profile.gender ==="f"){
+        if(profile.gender ==="F"){
             cardclass="pink";
         }else {
             cardclass= `blue`;
